@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ranmika Kalhan Portfolio</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Poppins',sans-serif; background:#0a0a0a; color:#f5f5f5; scroll-behavior:smooth; overflow-x:hidden; }
+a { text-decoration:none; color:inherit; cursor:pointer; }
+
+/* Gradient text */
+.gradient-text { background: linear-gradient(90deg, #ff004f, #ff7700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+/* Gradient Line */
+.gradient-line {
+  height: 4px; /* thickness */
+  width: 100%; /* full width */
+  background: linear-gradient(90deg, #ff004f, #ff7700, #00ffe0, #ff004f);
+  background-size: 300% 100%; /* for animation */
+  border-radius: 2px;
+  animation: gradientMove 3s linear infinite;
+  margin: 1rem 0; /* spacing */
+}
+
+/* Animation */
+@keyframes gradientMove {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
+}
+.gradient-text2 {
+  background: linear-gradient(90deg, #ff004f, #ff7700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.3rem; /* adjust as needed */
+  display: inline-block;
+  animation: gradientMove 3s ease infinite;
+  background-size: 200% 100%;
+}
+
+/* Optional animated gradient */
+@keyframes gradientMove {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* Animations */
+@keyframes fadeInUp { 0% {opacity:0; transform:translateY(20px);} 100% {opacity:1; transform:translateY(0);} }
+.section-title { font-weight:bold; text-decoration:underline; display:inline-block; animation:fadeInUp 1s ease forwards; text-align:left; width:100%; font-size:2rem; background: linear-gradient(90deg, #ff004f, #ff7700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Header */
+header { position:fixed; top:0; left:0; width:100%; background:#000; display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; z-index:1000; box-shadow:0 2px 15px rgba(0,0,0,0.7); }
+header h1 { font-size:2rem; font-weight:700; }
+.header-animation { width:40px; height:40px; border-radius:12px; background:linear-gradient(45deg,#ff004f,#ff7700); animation:rotateAnim 2s linear infinite; }
+@keyframes rotateAnim { 0%{transform:rotate(0deg);}50%{transform:rotate(180deg);}100%{transform:rotate(360deg);} }
+
+/* Section boxes */
+section { padding:6rem 2rem; position:relative; margin:2rem auto; width:90%; border-radius:20px; box-shadow:0 0 20px rgba(255,0,79,0.2); transition:all .5s ease; opacity:0; transform:translateY(20px); }
+section.active { opacity:1; transform:translateY(0); }
+
+/* Hero */
+section.hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:#111; animation:fadeInUp 1.5s ease forwards; }
+.hero .logo-box { display:flex; align-items:center; gap:1rem; margin-bottom:2rem; justify-content:center; }
+.hero .logo-box img { width:120px; height:120px; border-radius:20%; animation:fadeInUp 1s ease forwards; }
+.hero h2 { font-size:3rem; margin-bottom:1rem; font-weight:bold; animation:fadeInUp 1s 0.5s ease forwards; }
+.hero h2 .gradient { background: linear-gradient(90deg, #ff004f, #ff7700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { font-size:1.3rem; margin-bottom:2rem; animation:fadeInUp 1s 0.7s ease forwards; }
+.hero .btn-about { background:#ff004f; padding:0.8rem 1.5rem; border-radius:8px; font-weight:bold; cursor:pointer; transition:all 0.3s; color:#fff; margin-top:1rem; display:inline-block; }
+.hero .btn-about:hover { transform:scale(1.1); box-shadow:0 0 15px #ff004f; }
+
+/* Skills */
+.skills-grid { display:flex; justify-content:center; gap:2rem; text-align:center; flex-wrap:wrap; }
+.skills-grid .skill-box { background:#1a1a1a; width:150px; height:150px; display:flex; align-items:center; justify-content:center; flex-direction:column; border-radius:16px; transition:all .5s ease; cursor:pointer; position:relative; }
+.skills-grid .skill-box:hover { box-shadow:0 0 25px #ff004f; }
+.skills-grid .skill-box.active { width:250px; height:250px; z-index:2; }
+.skills-grid .skill-box h4 { font-weight:bold; margin-bottom:0.5rem; text-align:center; transition:transform 0.5s ease; }
+.skills-grid .skill-box.active h4 { transform:translateY(-30px); font-size:1.5rem; }
+.skill-desc { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); opacity:0; transition:all 0.5s ease; text-align:center; width:90%; }
+.skill-box.active .skill-desc { opacity:1; }
+
+/* Socials */
+.social-boxes { display:flex; gap:2rem; flex-wrap:wrap; justify-content:center; margin-top:2rem; }
+.social-box { background:#1a1a1a; padding:2rem; border-radius:16px; display:flex; align-items:center; justify-content:center; flex-direction:column; min-width:140px; transition:all .3s; cursor:pointer; }
+.social-box img { width:50px; height:50px; margin-bottom:0.5rem; transition:transform 0.3s; }
+.social-box:hover img { transform:rotate(-15deg) scale(1.2); }
+.social-box:hover { transform:scale(1.05); box-shadow:0 0 25px #ff004f; }
+
+/* Contact */
+form { max-width:700px; margin:auto; display:flex; flex-direction:column; gap:1rem; }
+input,textarea { padding:1rem; border:none; border-radius:8px; outline:none; }
+button.send-btn { background:#ff004f; color:#fff; border:none; border-radius:8px; padding:0.8rem; cursor:pointer; transition:.3s; }
+button.send-btn:hover { background:#ff336f; box-shadow:0 0 15px #ff004f; }
+
+/* Footer */
+footer { text-align:center; padding:2rem; font-size:0.9rem; background:#000; border-radius:12px; margin-top:2rem; }
+
+/* Bottom nav */
+nav.bottom-nav { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:2rem; background:rgba(20,20,20,0.8); backdrop-filter:blur(12px); padding:0.8rem 1.6rem; border-radius:40px; box-shadow:0 0 20px rgba(0,0,0,0.6); z-index:1000; }
+nav.bottom-nav a { position:relative; font-size:1.5rem; transition:transform .3s; }
+nav.bottom-nav a span { position:absolute; bottom:130%; left:50%; transform:translateX(-50%); background:#111; color:#fff; padding:0.3rem 0.6rem; border-radius:6px; font-size:0.8rem; opacity:0; pointer-events:none; transition:opacity .3s, transform .3s; }
+nav.bottom-nav a:hover span { opacity:1; transform:translateX(-50%) translateY(-5px); }
+nav.bottom-nav a:hover { transform:scale(1.3); color:#ff004f; }
+nav.bottom-nav {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+nav.bottom-nav.hidden {
+  transform: translateY(100px); /* moves it down */
+  opacity: 0;
+}
+.section-title {
+  font-size: 2.5rem;       /* bigger header */
+  font-weight: bold;
+  text-align: center;       /* centers the text horizontally */
+  text-decoration: underline;
+  margin-bottom: 2rem;      /* spacing below header */
+  background: linear-gradient(90deg, #ff004f, #ff7700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInUp 1s ease forwards; /* optional animation */
+}
+#timeline {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem 0;
+}
+
+/* Middle line */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  background: linear-gradient(180deg, #ff004f, #ff7700);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -2px;
+  background-size: 200% 100%;
+  animation: gradientMove 6s linear infinite;
+}
+
+/* Timeline items */
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 1rem 2rem;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+/* Reveal animation */
+.timeline-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Left items */
+.timeline-item.left {
+  left: 0;
+  text-align: right;
+}
+
+/* Right items */
+.timeline-item.right {
+  left: 50%;
+  text-align: left;
+}
+
+/* Timeline box */
+.timeline-content {
+  background: #111;
+  padding: 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  display: inline-block;
+}
+
+.timeline-content:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255,0,79,0.4);
+}
+
+/* Year heading */
+.timeline-content h3 {
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff004f, #ff7700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textPulse 2s infinite;
+}
+
+/* Subtitle */
+.subtitle {
+  color: #bbb;
+  margin: 0.3rem 0;
+}
+
+/* Expandable description */
+.description {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease, opacity 0.6s ease;
+  opacity: 0;
+}
+
+.timeline-content.active .description {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 0.8rem;
+}
+
+/* Ball marker */
+.marker {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin-left: -9px;
+  background: radial-gradient(circle, #ff004f, #ff7700);
+  border-radius: 50%;
+  animation: bounce 2s infinite;
+  box-shadow: 0 0 15px rgba(255, 0, 79, 0.7);
+}
+
+/* Animations */
+@keyframes gradientMove {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
+}
+
+@keyframes textPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.about-extra {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.extra-text {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #ddd;
+}
+
+.btn-findmore {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(90deg, #ff004f, #ff7700);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255,0,79,0.4);
+}
+
+.btn-findmore:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255,119,0,0.6);
+}
+.btn-findmore {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(90deg, #ff004f, #ff7700);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255,0,79,0.4);
+
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 2.5s; /* appear after 2.5s */
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.about-extra {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* Animate both text and button together */
+.about-extra .extra-text,
+.about-extra .btn-findmore {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 2.5s; /* appear after 2.5s */
+}
+
+/* Button styling */
+.btn-findmore {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(90deg, #ff004f, #ff7700);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255,0,79,0.4);
+  margin-top: 0.5rem;
+}
+
+.btn-findmore:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255,119,0,0.6);
+}
+
+/* Fade Up Animation */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<h1>🚀 T. <span class="gradient-text">Ranmika</span></h1>
+<div class="header-animation"></div>
+</header>
+
+<section class="hero" id="home">
+  <div class="logo-box">
+    <img src="images/New_R_logo_with_name_-removebg-preview.png" alt="Logo">
+  </div>
+  <h2>Ranmika <span class="gradient">Kalhan</span></h2>
+  <p>Creative Web Developer & Designer. I build modern, accessible websites and web apps with delightful micro-interactions.</p>
+  <span class="btn-about" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});">About Me</span>
+</section>
+
+<section id="about" class="reveal">
+  <h3 class="section-title">About Me</h3>
+  <div class="intro-box">Hi, I’m Ranmika Kalhan, a passionate web developer and tech enthusiast dedicated to creating modern, interactive, and high-end digital experiences. I specialize in building dynamic websites and applications with clean, efficient code, blending design, functionality, and innovation. Always curious and driven, I love exploring new technologies, solving complex problems, and turning ideas into seamless online experiences. When I’m not coding, I enjoy learning, experimenting with creative projects, and staying up-to-date with the latest trends in tech.</div>
+  <div class="about-extra">
+    <p class="extra-text">Not satisfied?</p>
+    <a href="about.html" target="_blank" class="btn-findmore">Find More</a>
+  </div>  
+</section>
+<section id="timeline">
+  <h2 class="section-title">My Journey</h2>
+  <div class="timeline">
+
+    <!-- 2011 -->
+    <div class="timeline-item left">
+      <div class="marker"></div>
+      <div class="timeline-content" onclick="toggleDescription(this)">
+        <h3>2011 🎂</h3>
+        <p class="subtitle">Birth Year</p>
+        <div class="description">
+          <p>I was born in 2011. My Birthday is 2011/01/17.🎂</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2020 -->
+    <div class="timeline-item right">
+      <div class="marker"></div>
+      <div class="timeline-content" onclick="toggleDescription(this)">
+        <h3>2020 💻</h3>
+        <p class="subtitle">Scholaship Exam</p>
+        <div class="description">
+          <p>I passed my scholarship Exam getting 183 marks.🚀</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2021 -->
+    <div class="timeline-item left">
+      <div class="marker"></div>
+      <div class="timeline-content" onclick="toggleDescription(this)">
+        <h3>2021 📘</h3>
+        <p class="subtitle">New School</p>
+        <div class="description">
+          <p>Joined MRCM✨</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2022 -->
+    <div class="timeline-item right">
+      <div class="marker"></div>
+      <div class="timeline-content" onclick="toggleDescription(this)">
+        <h3>2022 ⚛️</h3>
+        <p class="subtitle">Cricket Journey Begins</p>
+        <div class="description">
+          <p>Joined a Cricket club and Played my first ever cricket match in Uyanwatta Cricket stadium⚡</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2024 -->
+    <div class="timeline-item left">
+      <div class="marker"></div>
+      <div class="timeline-content" onclick="toggleDescription(this)">
+        <h3>2025 🚀</h3>
+        <p class="subtitle">Open Batsman in the cricket team</p>
+        <div class="description">
+          <p>Played as the open batsman of school cirket team 😎</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section id="skills" class="reveal">
+  <h3 class="section-title">Skills</h3>
+  <div class="skills-grid">
+    <div class="skill-box" onclick="activateSkill(this)"><h4>Video Editing 💻</h4><span></span><div class="skill-desc">I love crafting videos that tell engaging stories, combining creativity and precision in every frame.</div></div>
+    <div class="skill-box" onclick="activateSkill(this)"><h4 >Cricket 🏏</h4><div class="skill-desc">Cricket is more than a sport for me—it’s a passion that inspires teamwork, strategy, and dedication.</div></div>
+    <div class="skill-box" onclick="activateSkill(this)"><h4>Social Media 📱</h4><div class="skill-desc">I enjoy creating content that entertains and connects, exploring trends and sharing stories that resonate.</div></div>
+  </div>
+</section>
+
+<section id="socials" class="reveal">
+  <h3 class="section-title">Find Me Online</h3>
+  <div class="social-boxes">
+    <div class="social-box" onclick="window.open('https://www.youtube.com/@RanmikaKalhan-h9m')"><img src="https://img.icons8.com/color/48/youtube-play.png" alt="YouTube">YouTube</div>
+    <div class="social-box" onclick="window.open('https://www.tiktok.com/@ranmika.aep')"><img src="https://img.icons8.com/color/48/tiktok.png" alt="TikTok">TikTok</div>
+    <div class="social-box" onclick="window.open('https://github.com','_blank')"><img src="https://img.icons8.com/material-rounded/48/github.png" alt="GitHub">GitHub</div>
+    <div class="social-box" onclick="window.open('https://linkedin.com','_blank')"><img src="https://img.icons8.com/color/48/linkedin.png" alt="LinkedIn">LinkedIn</div>
+  </div>
+</section>
+
+
+<section id="contact" class="reveal">
+  <h3 class="section-title">Contact</h3>
+  <form>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Email Address">
+    <textarea rows="4" placeholder="Message"></textarea>
+    <button type="submit" class="send-btn">Send Message</button>
+  </form>
+</section>
+
+<footer>© 2025 Built by <span class="gradient-text">Ranmika Thrimahawithana</span> — using <span class="gradient-text"> HTML, CSS & JavaScript.</span></footer>
+
+<nav class="bottom-nav">
+  <a href="#home"><span>Home</span>🏠</a>
+  <a href="#about"><span>About</span>🧑</a>
+  <a href="#skills"><span>Skills</span>💻</a>
+  <a href="#socials"><span>Social</span>🌐</a>
+  <a href="#contact"><span>Contact</span>✉️</a>
+</nav>
+
+<script>
+function activateSkill(box){
+  document.querySelectorAll('.skill-box').forEach(b=>{ if(b!==box)b.classList.remove('active'); });
+  box.classList.toggle('active');
+}
+// Reveal on scroll
+const sections=document.querySelectorAll('section');
+window.addEventListener('scroll',()=>{
+  sections.forEach(sec=>{
+    const top=sec.getBoundingClientRect().top;
+    if(top<window.innerHeight-100) sec.classList.add('active');
+  });
+});
+let lastScrollTop = 0;
+const nav = document.querySelector('nav.bottom-nav');
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight;
+  const clientHeight = document.documentElement.clientHeight;
+
+  // If near bottom, hide nav
+  if (scrollTop + clientHeight >= scrollHeight - 10) {
+    nav.classList.add('hidden');
+  } else {
+    nav.classList.remove('hidden');
+  }
+
+  // Optional: hide when scrolling down, show when scrolling up
+  /*
+  if (scrollTop > lastScrollTop) {
+    nav.classList.add('hidden');
+  } else {
+    nav.classList.remove('hidden');
+  }
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  */
+});
+function toggleDescription(element) {
+  element.classList.toggle("active");
+}
+
+// Scroll reveal effect
+const items = document.querySelectorAll(".timeline-item");
+window.addEventListener("scroll", () => {
+  items.forEach(item => {
+    const rect = item.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      item.classList.add("show");
+    }
+  });
+});
+
+</script>
+
+</body>
+</html>
