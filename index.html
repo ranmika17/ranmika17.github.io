@@ -11,7 +11,7 @@
 <script src="https://kit.fontawesome.com/4b1c8ae17e.js" crossorigin="anonymous"></script>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: #0d0d0d; }
+    body { font-family: 'Poppins', sans-serif; background: #000000; }
 
     /* Intro Fullscreen */
     #intro {
@@ -86,7 +86,7 @@
     }
   
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Poppins',sans-serif; background:#0a0a0a; color:#f5f5f5; scroll-behavior:smooth; overflow-x:hidden; }
+body { font-family:'Poppins',sans-serif; background:#000000; color:#f5f5f5; scroll-behavior:smooth; overflow-x:hidden; }
 a { text-decoration:none; color:inherit; cursor:pointer; }
 
 /* Gradient text */
@@ -379,19 +379,95 @@ nav.bottom-nav.hidden {
     transform: translateY(0);
   }
 }
-.about-extra {
-  margin-top: 2rem;
-  text-align: center;
+/* ===== rk About Section (scoped — safe) ===== */
+.rk-about-section{ 
+  --rk-accent-1: #ff004f;
+  --rk-accent-2: #ff7700;
+  padding: 4.5rem 1.5rem;
+  background: radial-gradient(circle at 10% 10%, rgba(20,8,8,0.6), #0a0a0a 40%);
+  color: #f5f5f5;
+  overflow: hidden;
 }
 
-/* Animate both text and button together */
-.about-extra .extra-text,
-.about-extra .btn-findmore {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 1s ease forwards;
-  animation-delay: 2.5s; /* appear after 2.5s */
+.rk-about-container{
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.25rem;
+  align-items: center;
+  padding: 0 1rem;
 }
+
+/* text column */
+.rk-about-text h2{
+  font-size: 2.2rem;
+  line-height: 1.05;
+  margin: 0 0 .8rem 0;
+  font-weight: 800;
+  background: linear-gradient(90deg,var(--rk-accent-1),var(--rk-accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.rk-about-text p{
+  color: #d8d8d8;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+.rk-about-quote{
+  background: rgba(255,255,255,0.02);
+  border-left: 3px solid var(--rk-accent-1);
+  color: #cfcfcf;
+  padding: .9rem 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+/* buttons */
+.rk-about-buttons{ display:flex; gap: .85rem; margin-top: .9rem; flex-wrap:wrap; }
+.rk-btn{
+  display:inline-block;
+  padding: .64rem 1.1rem;
+  border-radius: 10px;
+  font-weight:700;
+  text-decoration:none;
+  text-align:center;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.rk-btn-primary{
+  background: linear-gradient(90deg,var(--rk-accent-1),var(--rk-accent-2));
+  color:#fff;
+  box-shadow: 0 10px 30px rgba(255,0,79,0.09);
+}
+.rk-btn-outline{
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255,0,79,0.18);
+}
+.rk-btn:hover{ transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.45); }
+.rk-btn-outline:hover{ background: linear-gradient(90deg,var(--rk-accent-1),var(--rk-accent-2)); color:#fff; }
+
+/* image column */
+.rk-about-image{ display:flex; justify-content:center; align-items:center; }
+.rk-about-image img{
+  width: 300px; height: 300px; object-fit:cover;
+  border-radius: 50%;
+  border: 6px solid rgba(255,255,255,0.06);
+  box-shadow: 0 18px 50px rgba(255,0,79,0.08);
+  transition: transform .25s ease;
+}
+.rk-about-image img:hover{ transform: scale(1.04); }
+
+/* responsiveness */
+@media (max-width: 920px){
+  .rk-about-container{ grid-template-columns: 1fr; gap: 1.2rem; text-align: center; }
+  .rk-about-image{ order: -1; margin-bottom: .6rem; }
+  .rk-about-text h2{ font-size: 1.8rem; }
+  .rk-about-image img{ width: 220px; height: 220px; }
+}
+
 
 /* Button styling */
 .btn-findmore {
@@ -562,6 +638,73 @@ nav.bottom-nav.hidden {
   opacity: 0;
   pointer-events: none;
 }
+/* Blog Section */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* always 2 in one row */
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.blog-card {
+  background: #111;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255,0,79,0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.blog-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.blog-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(255,119,0,0.4);
+}
+
+.blog-content {
+  padding: 1.2rem;
+}
+
+.blog-content h4 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #ff004f, #ff7700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blog-content p {
+  font-size: 0.95rem;
+  color: #bbb;
+  margin-bottom: 1rem;
+}
+
+.blog-buttons {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.btn-box {
+  flex: 1;
+  text-align: center;
+  padding: 0.7rem;
+  background: linear-gradient(90deg, #ff004f, #ff0077);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba( #ff004f);
+}
 
 
 </style>
@@ -593,21 +736,41 @@ nav.bottom-nav.hidden {
 
 <section class="hero" id="home">
   <div class="logo-box">
-    <img src="New_R_logo_with_name_-removebg-preview.png" alt="Logo">
+    <img src="/images/New_R_logo_with_name_-removebg-preview.png" alt="Logo">
   </div>
   <h2>Ranmika <span class="gradient">Kalhan</span></h2>
   <p>Creative Web Developer & Designer. I build modern, accessible websites and web apps with delightful micro-interactions.</p>
   <span class="btn-about" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});">About Me</span>
 </section>
 
-<section id="about" class="reveal">
-  <h3 class="section-title">About Me</h3>
-  <div class="intro-box">Hi, I’m Ranmika Kalhan, a passionate web developer and tech enthusiast dedicated to creating modern, interactive, and high-end digital experiences. I specialize in building dynamic websites and applications with clean, efficient code, blending design, functionality, and innovation. Always curious and driven, I love exploring new technologies, solving complex problems, and turning ideas into seamless online experiences. When I’m not coding, I enjoy learning, experimenting with creative projects, and staying up-to-date with the latest trends in tech.</div>
-  <div class="about-extra">
-    <p class="extra-text">Not satisfied?</p>
-    <a href="about.html" target="_blank" class="btn-findmore">Find More</a>
-  </div>  
+<!-- ===== rk About Section (safe, copy-paste) ===== -->
+<section id="rk-about" class="rk-about-section">
+  <div class="rk-about-container">
+    <!-- LEFT: text -->
+    <div class="rk-about-text">
+      <h2>Hello, I'm <span style="font-weight:900">Ranmika Kalhan</span></h2>
+      <p>
+        I build modern, interactive websites and make creative videos. I focus on
+        clean code, delightful micro-interactions and fast user experiences.
+        When I'm not coding I play cricket and explore motion design.
+      </p>
+      <div class="rk-about-quote">
+        "Design with empathy. Code with care."
+      </div>
+      <div class="rk-about-buttons">
+        <a href="about.html" class="rk-btn rk-btn-primary" target="_blank" rel="noopener">Find More?</a>
+        <a href="blog.html" class="rk-btn rk-btn-outline">Blogs</a>
+      </div>
+    </div>
+
+    <!-- RIGHT: circular image -->
+    <div class="rk-about-image">
+      <img src="images/WhatsApp Image 2025-08-09 at 17.55.00_7eb8336d.jpg" alt="Profile — Ranmika">
+    </div>
+  </div>
 </section>
+<!-- ===== end rk About Section ===== -->
+
 <section id="timeline">
   <h2 class="section-title">My Journey</h2>
   <div class="timeline">
@@ -674,6 +837,65 @@ nav.bottom-nav.hidden {
 
   </div>
 </section>
+<section id="blog" class="reveal">
+  <h3 class="section-title">My Blog</h3>
+  <div class="blog-grid">
+
+    <!-- Blog Card 1 -->
+    <div class="blog-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Pollock_to_Hussey.jpg/1200px-Pollock_to_Hussey.jpg" alt="Blog 1 Thumbnail">
+      <div class="blog-content">
+        <h4>My Life with Cricket and Other Sports🏏⚽</h4>
+        <p>My life experiences with sports</p>
+        <div class="blog-buttons">
+          <a href="blog.html" class="btn-box">Read More</a>
+          <a href="#" class="btn-box">Share</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog Card 2 -->
+    <div class="blog-card">
+      <img src="https://www.lifewire.com/thmb/yNL8V8fxh2KozTWZaFaM1IkdYE4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Windows-11-vs-Windows-10-017883b520cd47608f6b994289765abb.jpg" alt="Blog 2 Thumbnail">
+      <div class="blog-content">
+        <h4>Windows 10 or 11❓ Choose wisely</h4>
+        <p>What operating system is better now days?</p>
+        <div class="blog-buttons">
+          <a href="blog.html" class="btn-box">Read More</a>
+          <a href="#" class="btn-box">Share</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog Card 3 -->
+    <div class="blog-card">
+      <img src="https://adaderanaenglish.s3.amazonaws.com/1757382719-Asia-Cup-2025-Sri-Lanka-Ada-Derana-6.jpg" alt="Blog 3 Thumbnail">
+      <div class="blog-content">
+        <h4>Pre-conferene about Asia Cup 2025💯</h4>
+        <p>The asia cup 2025 is coming up.</p>
+        <div class="blog-buttons">
+          <a href="blog3.html" class="btn-box">Read More</a>
+          <a href="#" class="btn-box">Share</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog Card 4 -->
+    <div class="blog-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh8G7Q3rLWczPt80vAY0KHNu0wtwO9Xf9fwA&s" alt="Blog 4 Thumbnail">
+      <div class="blog-content">
+        <h4>🚀 How to Use GitHub to Publish Websites</h4>
+        <p>Use github to publish your websites</p>
+        <div class="blog-buttons">
+          <a href="blog4.html" class="btn-box">Read More</a>
+          <a href="#" class="btn-box">Share</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <section id="skills" class="reveal">
   <h3 class="section-title">Skills</h3>
   <div class="skills-grid">
